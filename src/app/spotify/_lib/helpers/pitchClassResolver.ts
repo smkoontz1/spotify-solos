@@ -1,0 +1,15 @@
+export const PITCH_CLASSES = [
+  { keyVal: -1, displayName: 'Err' },
+  { keyVal: 0, displayName: 'C' },
+  { keyVal: 1, displayName: 'C#/Db' },
+  { keyVal: 2, displayName: 'D' },
+  { keyVal: 3, displayName: 'D#/Eb' },
+  { keyVal: 4, displayName: 'E' },
+  { keyVal: 5, displayName: 'F' },
+  { keyVal: 6, displayName: 'F#/Gb' },
+  { keyVal: 7, displayName: 'G' },
+  { keyVal: 8, displayName: 'G#/Ab' },
+  { keyVal: 9, displayName: 'A' },
+  { keyVal: 10, displayName: 'A#/Bb' },
+  { keyVal: 11, displayName: 'B' },
+]

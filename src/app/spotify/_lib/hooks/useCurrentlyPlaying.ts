@@ -1,11 +1,11 @@
 import axios from 'axios'
 import { useQuery, UseQueryResult } from 'react-query'
+import { getAccessToken } from '../helpers/accessToken'
 
 export const useCurrentlyPlaying = (): UseQueryResult<any> => {
 
   return useQuery(['me', 'player', 'currently-playing'], async (): Promise<any> => {
-    
-    let accessToken = localStorage.getItem('access_token')
+    const accessToken = await getAccessToken()
 
     const response = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
       headers: {

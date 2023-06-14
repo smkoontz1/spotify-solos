@@ -1,6 +1,7 @@
 'use client'
 
 import { CLIENT_ID, REDIRECT_URI } from '../_lib/spotifyAuth'
+import { TokenReponse } from '../_types/TokenResponse'
 
 export default function TokenRetriever() {
 
@@ -26,16 +27,21 @@ export default function TokenRetriever() {
   })
     .then(response => {
       if (!response.ok) {
-        throw new Error('HTTP status ' + response.status);
+        throw new Error('HTTP status ' + response.status)
       }
-      return response.json();
+
+      return response.json() as Promise<TokenReponse>
     })
     .then(data => {
-      localStorage.setItem('access_token', data.access_token);
+      console.log('Token data', data)
+
+      localStorage.setItem('access_token', data.access_token)
+      localStorage.setItem('access_token_expiry', (Date.now() + (data.expires_in * 1000)).toString())
+      localStorage.setItem('refresh_token', data.refresh_token)
 
       window.location = 'http://localhost:3000/spotify/now-playing' as unknown as Location
     })
     .catch(error => {
-      console.error('Error:', error);
-    });
+      console.error('Error:', error)
+    })
 }

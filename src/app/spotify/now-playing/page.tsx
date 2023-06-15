@@ -28,9 +28,6 @@ export default function ActiveSong() {
     console.error(currPlayingError)
   }
 
-  console.log(me)
-  console.log(currPlaying?.item)
-
   const item = currPlaying?.item
   const trackId = item?.id
 

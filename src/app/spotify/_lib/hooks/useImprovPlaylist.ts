@@ -8,6 +8,7 @@ import { Artist } from '../../_types/custom/Artist'
 export const useImprovPlaylist = (): UseQueryResult<Playlist> => {
 
   return useQuery(['improv', 'playlist'], async (): Promise<Playlist> => {
+    
     const accessToken = await getAccessToken()
 
     const allPlaylists = await axios.get('https://api.spotify.com/v1/me/playlists', {
@@ -16,7 +17,7 @@ export const useImprovPlaylist = (): UseQueryResult<Playlist> => {
       }
     })
 
-    const guitarImprovPlaylist = allPlaylists?.data?.items.find((i: { name: string }) => i.name === 'Guitar Improv')
+    const guitarImprovPlaylist = allPlaylists?.data?.items.find((i: { name: string }) => i.name === 'The Way')
     const tracksUrl = guitarImprovPlaylist.tracks.href
 
     const playlistTracksResponse = await axios.get(tracksUrl, {
@@ -29,8 +30,9 @@ export const useImprovPlaylist = (): UseQueryResult<Playlist> => {
 
     const customTracks = playlistItems.map((i: any) => {
       return {
+        trackId: i.track.id,
         title: i.track.name,
-        albumArtUrl: i.track.album.images[2],
+        albumArtUrl: i.track.album.images[2].url,
         artists: i.track.artists.map((a: any) => {
           return {
             name: a.name

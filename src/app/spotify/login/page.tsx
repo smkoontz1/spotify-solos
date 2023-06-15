@@ -40,6 +40,7 @@ const logIn = () => {
 
 export default function SpotifyLogin() {
 
+  // TODO
   return (
     <button onClick={logIn}>Log in to spotify</button>
   )

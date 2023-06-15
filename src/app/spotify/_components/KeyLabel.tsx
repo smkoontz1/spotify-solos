@@ -22,12 +22,11 @@ export default function KeyLabel(props: Props): JSX.Element {
     console.error(featuresError)
   }
 
-  const keyVal = features?.audio_features[0]?.key
+  const keyVal = features?.key ?? -1
   const pitch = PITCH_CLASSES.find(pc => pc.keyVal === keyVal)?.displayName
+  const mode = features?.mode
 
   return (
-    <>
-      <p>Key: {pitch}</p>
-    </>
+    <>{pitch}{mode === 'minor' && 'm'}</>
   )
 }

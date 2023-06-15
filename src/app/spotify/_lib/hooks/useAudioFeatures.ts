@@ -2,19 +2,21 @@ import axios from 'axios'
 import { useQuery, UseQueryResult } from 'react-query'
 import qs from 'qs'
 import { getAccessToken } from '../helpers/accessToken'
+import { AudioFeatures } from '../../_types/custom/AudioFeatures'
 
 interface Props {
   id: string
 }
 
-export const useAudioFeatures = ({ id }: Props): UseQueryResult<any> => {
+export const useAudioFeatures = ({ id }: Props): UseQueryResult<AudioFeatures> => {
 
-  return useQuery(['audio', 'features', id], async (): Promise<any> => {
+  return useQuery(['audio', 'features', id], async (): Promise<AudioFeatures> => {
+    
     const accessToken = await getAccessToken()
 
     const response = await axios.get('https://api.spotify.com/v1/audio-features', {
       headers: {
-        Authorization: 'Bearer ' + accessToken
+        Authorization: `Bearer ${accessToken}`
       },
       params: {
         ids: id
@@ -24,6 +26,11 @@ export const useAudioFeatures = ({ id }: Props): UseQueryResult<any> => {
       }
     })
     
-    return response?.data
+    const audioFeatures = response?.data?.audio_features[0]
+
+    return {
+      key: audioFeatures?.key,
+      mode: audioFeatures?.mode === 0 ? 'minor' : 'major'
+    }
   })
 }

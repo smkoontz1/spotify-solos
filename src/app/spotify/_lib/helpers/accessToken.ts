@@ -2,14 +2,13 @@ import axios from 'axios'
 import { CLIENT_ID } from "../spotifyAuth"
 
 export const getAccessToken = async (): Promise<string> => {
+  
   const accessTokenExpiry = Number.parseInt(localStorage.getItem('access_token_expiry') || '')
 
   if (accessTokenExpiry > Date.now()) {
-    console.log(`Current time: ${Date.now()}, Access Token expiry: ${accessTokenExpiry}`)
     return localStorage.getItem('access_token') || ''
   }
 
-  console.log('Expired. Refreshing.')
   // Refresh token
   const refreshToken = localStorage.getItem('refresh_token')
 
@@ -24,7 +23,7 @@ export const getAccessToken = async (): Promise<string> => {
     },
   })
 
-  const tokenData = refreshTokenResponse?.data?.data
+  const tokenData = refreshTokenResponse?.data
   const newAccessToken = tokenData.access_token 
 
   localStorage.setItem('access_token', newAccessToken)

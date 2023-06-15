@@ -1,6 +1,7 @@
 'use client'
 
-import { ListGroup, Container } from 'react-bootstrap'
+import { Container, Table } from 'react-bootstrap'
+import KeyLabel from '../_components/KeyLabel'
 import { useImprovPlaylist } from '../_lib/hooks/useImprovPlaylist'
 
 export default function ImprovPlaylist() {
@@ -9,24 +10,33 @@ export default function ImprovPlaylist() {
     isFetching: isPlaylistsFetching,
     isError: isPlaylistsError,
     error: playlistsError,
-    data: playlists
+    data: playlist
   }  = useImprovPlaylist()
-
-
 
   return (
     <Container>
-      {playlists &&
-        <>
-          <h1 className='mb-3'>{playlists.title}</h1>
-          <ListGroup>
-            {playlists.tracks.map(t => {
+      <h1 className='mt-2 mb-4'>{playlist?.title}</h1>
+      {playlist &&
+        <Table hover>
+          <thead>
+            <th></th>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Key</th>
+          </thead>
+          <tbody>
+            {playlist.tracks.map(t => {
               return (
-                <ListGroup.Item>{t.title} - {t.artists.map(a => a.name).join(', ')}</ListGroup.Item>
+                <tr>
+                  <td><img src={t.albumArtUrl} /></td>
+                  <td>{t.title}</td>
+                  <td>{t.artists.map(a => a.name).join(', ')}</td>
+                  <td><KeyLabel trackId={t.trackId} /></td>
+                </tr>
               )
             })}
-          </ListGroup>
-        </>
+          </tbody>          
+        </Table>
       }
     </Container>
   )

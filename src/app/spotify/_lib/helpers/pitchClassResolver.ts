@@ -1,5 +1,5 @@
 export const PITCH_CLASSES = [
-  { keyVal: -1, displayName: 'Err' },
+  { keyVal: -1, displayName: 'Unknown' },
   { keyVal: 0, displayName: 'C' },
   { keyVal: 1, displayName: 'C#/Db' },
   { keyVal: 2, displayName: 'D' },

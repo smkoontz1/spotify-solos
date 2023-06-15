@@ -1,7 +1,7 @@
 'use client'
 
 import { CLIENT_ID, REDIRECT_URI } from '../_lib/spotifyAuth'
-import { TokenReponse } from '../_types/TokenResponse'
+import { TokenReponse } from '../_types/spotifyApi/TokenResponse'
 
 export default function TokenRetriever() {
 

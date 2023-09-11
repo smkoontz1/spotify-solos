@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useQuery, UseQueryResult } from 'react-query'
-import { getAccessToken } from '../helpers/accessToken'
+import { getAccessToken } from '../util/accessToken'
 
 export const useCurrentlyPlaying = (): UseQueryResult<any> => {
 

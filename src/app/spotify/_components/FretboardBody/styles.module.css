@@ -1,0 +1,63 @@
+.board {
+  position: relative;
+  border: 1px solid black;
+  margin: 2em 1em 2em 0;
+}
+
+.frets {
+  display: flex;
+  justify-content: space-between;
+  height: 300px;
+}
+
+.fretContainer {
+  position: relative;
+  width: 100%;
+}
+
+.bottomNotesContainer {
+  height: 100%;
+  width: 100%;
+  border-right: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-end;
+}
+
+.topNotePillContainer {
+  position: absolute;
+  right: -55px;
+  top: -59px;
+  width: 100%;
+}
+
+.notePillContainer {
+  position: relative;
+  width: 40%;
+  height: 100%;
+}
+
+.notePill {
+  position: absolute;
+  right: -20px;
+  top: 48px;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.strings {
+  position: absolute;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+  width: 100%;
+}
+
+.string {
+  border: 1px solid black;
+  height: 100%;
+  width: 100%;
+}

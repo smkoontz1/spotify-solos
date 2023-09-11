@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useQuery, UseQueryResult } from 'react-query'
 import qs from 'qs'
-import { getAccessToken } from '../helpers/accessToken'
+import { getAccessToken } from '../util/accessToken'
 import { AudioFeatures } from '../../_types/custom/AudioFeatures'
 
 interface Props {

@@ -1,10 +1,12 @@
 'use client'
 
-import { Container, Table } from 'react-bootstrap'
+import { useState } from 'react'
+import { Container, Modal, Table } from 'react-bootstrap'
 import KeyLabel from '../_components/KeyLabel'
 import { useImprovPlaylist } from '../_lib/hooks/useImprovPlaylist'
 
 export default function ImprovPlaylist() {
+  
 
   const { 
     isFetching: isPlaylistsFetching,
@@ -27,7 +29,7 @@ export default function ImprovPlaylist() {
           <tbody>
             {playlist.tracks.map(t => {
               return (
-                <tr>
+                <tr key={t.trackId}>
                   <td><img src={t.albumArtUrl} /></td>
                   <td>{t.title}</td>
                   <td>{t.artists.map(a => a.name).join(', ')}</td>

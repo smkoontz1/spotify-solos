@@ -1,6 +1,6 @@
 import { useQuery, UseQueryResult } from 'react-query'
 import axios from 'axios'
-import { getAccessToken } from '../helpers/accessToken'
+import { getAccessToken } from '../util/accessToken'
 import { Playlist } from '../../_types/custom/Playlist'
 import { Track } from '../../_types/custom/Track'
 import { Artist } from '../../_types/custom/Artist'
@@ -17,7 +17,9 @@ export const useImprovPlaylist = (): UseQueryResult<Playlist> => {
       }
     })
 
-    const guitarImprovPlaylist = allPlaylists?.data?.items.find((i: { name: string }) => i.name === 'The Way')
+    console.log(allPlaylists)
+
+    const guitarImprovPlaylist = allPlaylists?.data?.items.find((i: { name: string }) => i.name === '2000s Mix')
     const tracksUrl = guitarImprovPlaylist.tracks.href
 
     const playlistTracksResponse = await axios.get(tracksUrl, {

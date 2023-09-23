@@ -57,6 +57,15 @@ function Fret(props: FretProps) {
 
   return (
     <div className={styles.fretContainer}>
+      {(num == 3 || num == 5 || num == 7 || num == 9) &&
+        <div className={styles.fretDot} />
+      }
+      {(num == 12) &&
+        <>
+          <div className={styles.twelveDot1} />
+          <div className={styles.twelveDot2} />
+        </>
+      }
       <div className={styles.topNotePillContainer}>
         <NotePill
           pillClassName={styles.notePill}

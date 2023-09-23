@@ -15,6 +15,39 @@
   width: 100%;
 }
 
+.fretDot {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 36%;
+  top: 46%;
+  background-color: black;
+  border: solid 1px;
+  border-radius: 100%;
+}
+
+.twelveDot1 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 36%;
+  top: 26%;
+  background-color: black;
+  border: solid 1px;
+  border-radius: 100%;
+}
+
+.twelveDot2 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 36%;
+  top: 68%;
+  background-color: black;
+  border: solid 1px;
+  border-radius: 100%;
+}
+
 .bottomNotesContainer {
   height: 100%;
   width: 100%;
@@ -40,7 +73,7 @@
 
 .notePill {
   position: absolute;
-  right: -20px;
+  right: -6px;
   top: 48px;
   width: 100%;
   border: 1px solid black;

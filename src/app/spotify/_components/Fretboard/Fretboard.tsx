@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Dropdown, DropdownButton } from 'react-bootstrap'
 import { AVAILABLE_SCALES } from '../../_lib/util/constants'
-import FretboardBody from '../FretboardBody/FretboardBody'
+import FretboardBody from './FretboardBody/FretboardBody'
 
 interface FretboardProps {
   keyRootPitch: string

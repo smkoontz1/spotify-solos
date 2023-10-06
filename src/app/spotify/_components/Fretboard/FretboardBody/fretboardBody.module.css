@@ -1,0 +1,22 @@
+.board {
+  position: relative;
+  border: 1px solid black;
+  margin: 2em 1em 2em 0;
+}
+
+.frets {
+  display: flex;
+  justify-content: space-between;
+  height: 300px;
+}
+
+.strings {
+  position: absolute;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+  width: 100%;
+}
+

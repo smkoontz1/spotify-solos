@@ -1,89 +1,7 @@
-import { Badge } from 'react-bootstrap'
-import { AVAILABLE_SCALES, WESTERN_PITCHES } from '../../_lib/util/constants'
-import { FretboardNote } from '../../_types/custom/FretboardNote'
-import styles from './styles.module.css'
-
-interface NotePillProps {
-  note: FretboardNote
-  pillClassName: string
-}
-
-interface FretProps {
-  num: number
-  notes: FretboardNote[]
-}
-
-function NotePill(props: NotePillProps) {
-  const { note, pillClassName } = props
-  
-  let pillColor = 'light'
-  let textColor = 'dark'
-
-  if (note.inScale) {
-    textColor = 'light'
-
-    if (note.isRoot) {
-      pillColor = 'primary'
-    }
-    else {
-      pillColor = 'dark'
-    }
-  }
-
-  return (
-    <div className={styles.notePillContainer}>
-      <Badge key={`${note}-pill`} pill bg={pillColor} text={textColor} className={pillClassName}>
-        {note.value}
-      </Badge>
-    </div>
-  )
-}
-
-function Fret(props: FretProps) {
-  const { num, notes } = props
-
-  let bottomNotePills: JSX.Element[] = []
-
-  for (let i = 1; i < 6; i++) { 
-    bottomNotePills = [
-      ...bottomNotePills,
-      <NotePill
-        key={`fret-${num}-${notes[i].value}`}
-        pillClassName={styles.notePill}
-        note={notes[i]}
-      />
-    ]
-  }
-
-  return (
-    <div className={styles.fretContainer}>
-      {(num == 3 || num == 5 || num == 7 || num == 9) &&
-        <div className={styles.fretDot} />
-      }
-      {(num == 12) &&
-        <>
-          <div className={styles.twelveDot1} />
-          <div className={styles.twelveDot2} />
-        </>
-      }
-      <div className={styles.topNotePillContainer}>
-        <NotePill
-          pillClassName={styles.notePill}
-          note={notes[0]}
-        />
-      </div>
-      <div className={styles.bottomNotesContainer}>
-        {bottomNotePills}
-      </div>
-    </div>
-  )
-}
-
-function String() {
-  return (
-    <div className={styles.string}></div>
-  )
-}
+import { AVAILABLE_SCALES, WESTERN_PITCHES } from '../../../_lib/util/constants'
+import { Fret } from '../Fret/Fret'
+import { String } from '../String/String'
+import styles from './fretboardBody.module.css'
 
 const incrementPitchIndex = (index: number, amount: number): number => {
   const nextIndex = index + amount
@@ -94,7 +12,7 @@ const incrementPitchIndex = (index: number, amount: number): number => {
   } else if (overage < -1) {
     return Math.abs(overage)
   }
-
+  
   return nextIndex
 }
 

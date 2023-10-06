@@ -19,7 +19,7 @@ export const useImprovPlaylist = (): UseQueryResult<Playlist> => {
 
     console.log(allPlaylists)
 
-    const guitarImprovPlaylist = allPlaylists?.data?.items.find((i: { name: string }) => i.name === '2000s Mix')
+    const guitarImprovPlaylist = allPlaylists?.data?.items.find((i: { name: string }) => i.name === 'My Next Thirty Years')
     const tracksUrl = guitarImprovPlaylist.tracks.href
 
     const playlistTracksResponse = await axios.get(tracksUrl, {

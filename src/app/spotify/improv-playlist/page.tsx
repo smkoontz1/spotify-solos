@@ -1,7 +1,6 @@
 'use client'
 
-import { useState } from 'react'
-import { Container, Modal, Table } from 'react-bootstrap'
+import { Container, Table } from 'react-bootstrap'
 import KeyLabel from '../_components/KeyLabel'
 import { useImprovPlaylist } from '../_lib/hooks/useImprovPlaylist'
 

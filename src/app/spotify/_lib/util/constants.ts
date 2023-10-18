@@ -30,6 +30,20 @@ export const AVAILABLE_SCALES: AvailableScales = {
     false,
     true // 7
   ],
+  'Natural Minor': [
+    true, // 1
+    false,
+    true, // 2
+    true, // b3
+    false,
+    true, // 4
+    false,
+    true, // 5
+    true, // b6
+    false,
+    true, // b7
+    false
+  ],
   'Major Pentatonic': [
     true, // 1
     false,
@@ -52,6 +66,20 @@ export const AVAILABLE_SCALES: AvailableScales = {
     false,
     true, // 4
     false,
+    true, // 5
+    false,
+    false, 
+    true, // b7
+    false
+  ],
+  'Blues': [
+    true, // 1
+    false,
+    false,
+    true, // b3
+    false,
+    true, // 4
+    true, // b5
     true, // 5
     false,
     false, 

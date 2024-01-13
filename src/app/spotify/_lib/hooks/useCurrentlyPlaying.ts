@@ -1,19 +1,14 @@
-import axios from 'axios'
 import { useQuery, UseQueryResult } from 'react-query'
-import { getAccessToken } from '../util/accessToken'
+import { useSpotify } from './useSpotify'
+import { PlaybackState } from '@spotify/web-api-ts-sdk'
 
-export const useCurrentlyPlaying = (): UseQueryResult<any> => {
+export const useCurrentlyPlaying = (): UseQueryResult<PlaybackState> => {
+  const spotify = useSpotify()
 
-  return useQuery(['me', 'player', 'currently-playing'], async (): Promise<any> => {
-    
-    const accessToken = await getAccessToken()
-
-    const response = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
+  return useQuery(
+    ['currently-playing'],
+    async () => await spotify?.player.getCurrentlyPlayingTrack() || {} as PlaybackState,
+    {
+      enabled: !!spotify
     })
-    
-    return response?.data
-  })
 }

@@ -1,36 +1,18 @@
-import axios from 'axios'
 import { useQuery, UseQueryResult } from 'react-query'
-import qs from 'qs'
-import { getAccessToken } from '../util/accessToken'
-import { AudioFeatures } from '../../_types/custom/AudioFeatures'
+import { useSpotify } from './useSpotify'
+import { AudioFeatures } from '@spotify/web-api-ts-sdk'
 
 interface Props {
   id: string
 }
 
 export const useAudioFeatures = ({ id }: Props): UseQueryResult<AudioFeatures> => {
+  const spotify = useSpotify()  
 
-  return useQuery(['audio', 'features', id], async (): Promise<AudioFeatures> => {
-    
-    const accessToken = await getAccessToken()
-
-    const response = await axios.get('https://api.spotify.com/v1/audio-features', {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      },
-      params: {
-        ids: id
-      },
-      paramsSerializer: function(params) {
-        return qs.stringify(params)
-      }
+  return useQuery(
+    ['audio-features', id],
+    async () => await spotify?.tracks.audioFeatures(id) || {} as AudioFeatures,
+    {
+      enabled: !!spotify
     })
-    
-    const audioFeatures = response?.data?.audio_features[0]
-
-    return {
-      key: audioFeatures?.key,
-      mode: audioFeatures?.mode === 0 ? 'minor' : 'major'
-    }
-  })
 }

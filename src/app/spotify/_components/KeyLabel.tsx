@@ -34,7 +34,7 @@ export default function KeyLabel(props: Props): JSX.Element {
   const pitch = PITCH_CLASSES.find(pc => pc.keyVal === keyVal)?.displayName
   const mode = features?.mode
   let keyStr = pitch
-  if (mode === 'minor') {
+  if (mode === 0) {
     keyStr += 'm'
   }
 

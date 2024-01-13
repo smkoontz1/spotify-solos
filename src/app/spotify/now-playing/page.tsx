@@ -1,8 +1,9 @@
 'use client'
 
+import { Track } from '@spotify/web-api-ts-sdk'
 import KeyLabel from '../_components/KeyLabel'
 import { useCurrentlyPlaying } from '../_lib/hooks/useCurrentlyPlaying'
-import { useMe } from '../_lib/hooks/useMe'
+import { useUserProfile } from '../_lib/hooks/useUserProfile'
 
 export default function ActiveSong() {
 
@@ -11,7 +12,7 @@ export default function ActiveSong() {
     isError: isMeError,
     error: meError,
     data: me
-  } = useMe()
+  } = useUserProfile()
 
   const {
     isFetching: isCurrPlayingFetching,
@@ -28,7 +29,7 @@ export default function ActiveSong() {
     console.error(currPlayingError)
   }
 
-  const item = currPlaying?.item
+  const item = currPlaying?.item as Track
   const trackId = item?.id
 
   return (

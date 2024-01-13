@@ -8,10 +8,10 @@ import { useUserProfile } from '../_lib/hooks/useUserProfile'
 export default function ActiveSong() {
 
   const {
-    isFetching: isMeFetching,
-    isError: isMeError,
-    error: meError,
-    data: me
+    isFetching: isUserFetching,
+    isError: isUserError,
+    error: userError,
+    data: user
   } = useUserProfile()
 
   const {
@@ -21,8 +21,8 @@ export default function ActiveSong() {
     data: currPlaying
   } = useCurrentlyPlaying()
 
-  if (isMeError) {
-    console.error(meError)
+  if (isUserError) {
+    console.error(userError)
   }
 
   if (isCurrPlayingError) {
@@ -32,10 +32,13 @@ export default function ActiveSong() {
   const item = currPlaying?.item as Track
   const trackId = item?.id
 
+  console.log('User', user)
+  console.log('Curr playing', currPlaying)
+
   return (
     <>
-      <h2>Logged in as: {me?.display_name}</h2>
-      <img src={me?.images[0]?.url} style={{ maxHeight: 150 }}></img>
+      <h2>Logged in as: {user?.display_name}</h2>
+      <img src={user?.images[0]?.url} style={{ maxHeight: 150 }}></img>
       <br/>
       <br/>
       <br/>

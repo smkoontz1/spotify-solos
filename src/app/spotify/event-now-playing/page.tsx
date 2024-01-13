@@ -11,8 +11,6 @@ export default function EventNowPlaying() {
   const [player, setPlayer] = useState(undefined)
   const [current_track, setTrack] = useState(null)
 
-  console.log('Rendering page')
-
   useEffect(() => {
     (async () => {
       if (!spotify)
@@ -20,11 +18,9 @@ export default function EventNowPlaying() {
         return
       }
 
-      console.log('Building player')
       const tokenResponse = await spotify?.getAccessToken()
       const token = tokenResponse?.access_token
 
-      console.log('Creating script element')
       const script = document.createElement("script");
       script.src = "https://sdk.scdn.co/spotify-player.js";
       script.async = true;
@@ -32,7 +28,6 @@ export default function EventNowPlaying() {
       document.body.appendChild(script);
 
       window.onSpotifyWebPlaybackSDKReady = () => {
-        console.log('In On Spotify ready')
 
         const player = new window.Spotify.Player({
           name: 'Web Playback SDK',
@@ -40,7 +35,6 @@ export default function EventNowPlaying() {
           volume: 0.5
         });
 
-        console.log('Setting player')
         setPlayer(player);
 
         player.addListener('ready', ({ device_id }) => {
@@ -52,7 +46,6 @@ export default function EventNowPlaying() {
         });
 
         player.addListener('player_state_changed', (state: any) => {
-          console.log('Player state changed')
 
           if (!state) {
             return
@@ -66,7 +59,6 @@ export default function EventNowPlaying() {
           })
         })
 
-        console.log('Connecting player')
         player.connect();
 
       };

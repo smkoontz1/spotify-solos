@@ -7,6 +7,7 @@ export const REDIRECT_URI = 'http://localhost:3000/spotify/now-playing'
 const SCOPES = [
   'playlist-read-collaborative',
   'playlist-read-private',
+  'user-modify-playback-state',
   'user-read-currently-playing',
   'user-read-email',
   'user-read-private',

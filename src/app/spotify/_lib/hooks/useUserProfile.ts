@@ -8,7 +8,5 @@ export const useUserProfile = (): UseQueryResult<UserProfile> => {
   return useQuery(
     ['me'],
     async () => await spotify?.currentUser.profile(),
-    {
-      enabled: !!spotify
-    })
+    { enabled: !!spotify })
 }

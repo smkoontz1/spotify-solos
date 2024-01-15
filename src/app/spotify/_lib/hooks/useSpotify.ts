@@ -2,7 +2,7 @@ import { AuthorizationCodeWithPKCEStrategy, SdkOptions, SpotifyApi } from '@spot
 import { useEffect, useRef, useState } from 'react'
 
 export const CLIENT_ID = '64e49ed94b984e7b89490500bb7da546'
-export const REDIRECT_URI = 'http://localhost:3000/spotify/now-playing'
+export const REDIRECT_URI = 'http://localhost:3000/'
 
 const SCOPES = [
   'playlist-read-collaborative',

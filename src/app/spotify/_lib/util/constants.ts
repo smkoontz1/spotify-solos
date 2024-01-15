@@ -1,4 +1,4 @@
-import { AvailableScales } from "../../_types/custom/AvailableScales"
+import { AvailableScales } from '../../_types/custom/AvailableScales'
 
 export const WESTERN_PITCHES = [
   'A',

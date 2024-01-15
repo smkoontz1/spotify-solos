@@ -13,15 +13,8 @@ interface Props {
 }
 
 export default function Album({ params }: Props) {
-  const {
-    isError,
-    error,
-    data
-  } = useAlbum(params.id)
-
-  const {
-    mutate
-  } = usePlayTrack()
+  const { data } = useAlbum(params.id)
+  const { mutate } = usePlayTrack()
 
   return (
     <>
@@ -41,12 +34,12 @@ export default function Album({ params }: Props) {
                 <th></th>
               </thead>
               <tbody>
-                {data?.tracks.items.map(t => {
+                {data?.tracks.map(t => {
                   return (
                     <tr key={t.id}>
-                      <td>{t.track_number}</td>
-                      <td>{t.name}</td>
-                      <td><KeyLabel trackId={t.id} /></td>
+                      <td>{t.collectionNumber}</td>
+                      <td>{t.title}</td>
+                      <td><KeyLabel keyDef={t.key} /></td>
                       <td><FaPlay onClick={() => mutate(t.uri)} /></td>
                     </tr>
                   )

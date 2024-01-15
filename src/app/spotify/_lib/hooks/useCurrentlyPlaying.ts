@@ -8,7 +8,5 @@ export const useCurrentlyPlaying = (): UseQueryResult<PlaybackState> => {
   return useQuery(
     ['currently-playing'],
     async () => await spotify?.player.getCurrentlyPlayingTrack() || {} as PlaybackState,
-    {
-      enabled: !!spotify
-    })
+    { enabled: !!spotify })
 }

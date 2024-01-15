@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useUserProfile } from './spotify/_lib/hooks/useUserProfile'
-import { Button, Col, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 
 export default function Home() {
   const {

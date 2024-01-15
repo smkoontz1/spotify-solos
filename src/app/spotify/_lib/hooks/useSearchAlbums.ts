@@ -11,8 +11,6 @@ export const useSearchAlbums = ({ searchText }: Props) => {
   return useQuery(
     ['search-albums', searchText],
     async () => (await spotify?.search(searchText, ['album']))?.albums,
-    {
-      enabled: !!spotify && !!searchText
-    }
+    { enabled: !!spotify && !!searchText }
   )
 }

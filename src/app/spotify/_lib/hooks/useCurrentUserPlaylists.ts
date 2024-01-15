@@ -13,8 +13,6 @@ export const useCurrentUserPlaylists = ({ offset }: Props) => {
   return useQuery(
     ['current-user-playlists', offset],
     async () => await spotify?.currentUser.playlists.playlists(DEFAULT_PAGE_SIZE, offset),
-    {
-      enabled: !!spotify
-    }
+    { enabled: !!spotify }
   )
 }

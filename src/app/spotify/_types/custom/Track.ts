@@ -1,10 +1,10 @@
-import { Artist } from './Artist'
-import { AudioFeatures } from './AudioFeatures'
+import { Key } from './Key'
 
 export interface Track {
-  trackId: string
+  id: string
+  uri: string
   title: string
-  albumArtUrl: string
-  artists: Artist[]
-  audioFeatures: AudioFeatures
+  artist: string
+  collectionNumber: number
+  key: Key
 }

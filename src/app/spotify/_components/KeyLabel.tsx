@@ -1,40 +1,25 @@
 'use client'
 
 import { useState } from 'react'
-import { useAudioFeatures } from '../_lib/hooks/useAudioFeatures'
-import { PITCH_CLASSES } from '../_lib/util/pitchClassResolver'
 import { Button, Modal } from 'react-bootstrap'
 import { Fretboard } from './Fretboard/Fretboard'
+import { Key } from '../_types/custom/Key'
 
 interface Props {
-  trackId: string
+  keyDef: Key
   children?: JSX.Element|JSX.Element[]
 }
 
-export default function KeyLabel(props: Props): JSX.Element {
-  const { trackId } = props
-
-  const {
-    isFetching: isFeaturesFetching,
-    isError: isFeaturesError,
-    error: featuresError,
-    data: features
-  } = useAudioFeatures({ id: trackId })
-
-  if (isFeaturesError) {
-    console.error(featuresError)
-  }
+export default function KeyLabel({ keyDef }: Props): JSX.Element {
+  const { rootPitch, minor } = keyDef
 
   const [showFretboardModal, setShowFretboardModal] = useState(false)
 
   const handleCloseFretboard = () => setShowFretboardModal(false)
   const handleShowFretboard = () => setShowFretboardModal(true)
 
-  const keyVal = features?.key ?? -1
-  const pitch = PITCH_CLASSES.find(pc => pc.keyVal === keyVal)?.displayName
-  const mode = features?.mode
-  let keyStr = pitch
-  if (mode === 0) {
+  let keyStr = rootPitch
+  if (minor) {
     keyStr += 'm'
   }
 
@@ -46,10 +31,8 @@ export default function KeyLabel(props: Props): JSX.Element {
           <Modal.Title>Key: {keyStr}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {pitch &&
-          <>
-            <Fretboard keyRootPitch={pitch} />
-          </>
+          {rootPitch &&
+            <Fretboard keyRootPitch={rootPitch} />
           }
         </Modal.Body>
         <Modal.Footer>

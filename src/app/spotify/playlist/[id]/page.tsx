@@ -1,7 +1,7 @@
 'use client'
 
 import { Col, Container, Row, Table } from 'react-bootstrap'
-import { usePlayList } from '../../_lib/hooks/usePlaylist'
+import { usePlaylist } from '../../_lib/hooks/usePlaylist'
 import KeyLabel from '../../_components/KeyLabel'
 import { FaPlay } from 'react-icons/fa'
 import { usePlayTrack } from '../../_lib/hooks/usePlayTrack'
@@ -13,15 +13,8 @@ interface Props {
 }
 
 export default function Playlist({ params }: Props) {
-  const {
-    isError,
-    error,
-    data
-  } = usePlayList(params.id)
-
-  const {
-    mutate
-  } = usePlayTrack()
+  const { data } = usePlaylist(params.id)
+  const { mutate } = usePlayTrack()
 
   return (
     <>
@@ -35,22 +28,20 @@ export default function Playlist({ params }: Props) {
           <Col md='8'>
             <Table>
               <thead>
+                <th>Artist</th>
                 <th>Title</th>
                 <th>Key</th>
                 <th></th>
               </thead>
               <tbody>
-                {data?.tracks.items.map(pt => {
-                  const track = pt.track
-
-                  return (
-                    <tr key={track.id}>
-                      <td>{track.name}</td>
-                      <td><KeyLabel trackId={track.id} /></td>
-                      <td><FaPlay onClick={() => mutate(track.uri)} /></td>
-                    </tr>
-                  )
-                })}
+                {data?.tracks.map(t => 
+                  <tr key={t.id}>
+                    <td>{t.artist}</td>
+                    <td>{t.title}</td>
+                    <td><KeyLabel keyDef={t.key} /></td>
+                    <td><FaPlay onClick={() => mutate(t.uri)} /></td>
+                  </tr>)
+                }
               </tbody>
             </Table>
           </Col>

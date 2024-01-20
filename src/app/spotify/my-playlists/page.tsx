@@ -38,7 +38,7 @@ export default function MyPlaylists() {
       <Container>
         <Row>
           <Col>
-            <Table hover>
+            <Table className='vh-100' hover variant='dark'>
               <thead>
                 <th></th>
                 <th>Title</th>
@@ -54,12 +54,14 @@ export default function MyPlaylists() {
                 })}
               </tbody>
             </Table>
-            <Pagination>
-              <Pagination.Prev onClick={() => handlePageDown()} />
-              <Pagination.Item active>{page}</Pagination.Item>
-              <Pagination.Next onClick={() => handlePageUp()} />
-            </Pagination>
           </Col>
+        </Row>
+        <Row className='position-absolute bottom-0'>
+          <Pagination>
+            <Pagination.Prev onClick={() => handlePageDown()} />
+            <Pagination.Item active>{page}</Pagination.Item>
+            <Pagination.Next onClick={() => handlePageUp()} />
+          </Pagination>
         </Row>
       </Container>
     </>

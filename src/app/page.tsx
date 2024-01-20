@@ -1,33 +1,35 @@
 'use client'
 
-import Link from 'next/link'
-import { useUserProfile } from './spotify/_lib/hooks/useUserProfile'
-import { Col, Row } from 'react-bootstrap'
+import { Button, Col, Container, Row } from 'react-bootstrap'
+import { useRouter } from 'next/navigation'
+import { GiGuitarHead } from 'react-icons/gi'
 
 export default function Home() {
-  const {
-    error,
-    data
-  } = useUserProfile()
-  
-  if (error) {
-    console.error(error)
-  }
+  const router = useRouter()
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <Container>
       <Row>
-        <Col>
-          <h2>Logged in as: {data?.display_name}</h2>
-          <img src={data?.images[0]?.url} style={{ maxWidth: 150 }}></img>
+        <Col md='7'>
+          <p className='text-end text-uppercase text-light fs-1 fw-bold m-0'>Spotify Solos</p>
+        </Col>
+        <Col className='d-flex flex-column justify-content-center'>
+          <GiGuitarHead className='text-light' />
         </Col>
       </Row>
-      <Row className='mt-3'>
-        <Link href= 'spotify/now-playing'>Now Playing</Link>
-        <Link href= 'spotify/event-now-playing'>Event-driven Now Playing</Link>
-        <Link href= 'spotify/albums'>Search Albums</Link>
-        <Link href= 'spotify/my-playlists'>My Playlists</Link>
+      <Row className='justify-content-center align-items-center'>
+        <Col md='4'>
+          <Row className='m-4'>
+            <Button className='p-3' variant='light' onClick={_ => router.push('spotify/my-playlists')}>Playlists</Button>
+          </Row>
+          <Row className='m-4'>
+            <Button className='p-3' variant='light' onClick={_ => router.push('spotify/albums')}>Albums</Button>
+          </Row>
+          <Row className='m-4'>
+            <Button className='p-3' variant='light' disabled>Stream</Button>
+          </Row>
+        </Col>
       </Row>
-    </main>
+    </Container>
   )
 }

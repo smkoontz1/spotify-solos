@@ -26,7 +26,7 @@ export default function Playlist({ params }: Props) {
         </Row>
         <Row className='justify-content-center'>
           <Col md='8'>
-            <Table>
+            <Table variant='dark'>
               <thead>
                 <th>Artist</th>
                 <th>Title</th>

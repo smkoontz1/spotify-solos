@@ -1,2 +1,7 @@
   
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+.guitarHeadstock {
+  width: 30px;
+  height: 30px;
+}

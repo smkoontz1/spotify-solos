@@ -37,6 +37,9 @@ export default function MyPlaylists() {
     <>
       <Container>
         <Row>
+          <h1 className='text-light text-uppercase fw-bold'>My Playlists</h1>
+        </Row>
+        <Row>
           <Col>
             <Table className='vh-100' hover variant='dark'>
               <thead>
@@ -56,7 +59,7 @@ export default function MyPlaylists() {
             </Table>
           </Col>
         </Row>
-        <Row className='position-absolute bottom-0'>
+        <Row className='position-fixed bottom-0 bg-light w-100 mr-auto' style={{ height: '50px' }}>
           <Pagination>
             <Pagination.Prev onClick={() => handlePageDown()} />
             <Pagination.Item active>{page}</Pagination.Item>

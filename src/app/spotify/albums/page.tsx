@@ -47,7 +47,7 @@ export default function Albums() {
         </Form>
         <Row>
           <Col>
-            <Table hover>
+            <Table hover variant='dark'>
               <thead>
                 <th></th>
                 <th>Artist</th>

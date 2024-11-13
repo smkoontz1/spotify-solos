@@ -9,16 +9,16 @@ export default function Home() {
 
   return (
     <Container>
-      <Row>
-        <Col md='7'>
+      <Row className='justify-content-center align-items-center'>
+        <Col md='8' className='d-flex justify-content-center align-items-center'>
           <p className='text-end text-uppercase text-light fs-1 fw-bold m-0'>Spotify Solos</p>
-        </Col>
-        <Col className='d-flex flex-column justify-content-center'>
-          <GiGuitarHead className='text-light' />
+          <div className='p-3'>
+            <GiGuitarHead className='guitarHeadstock text-light' />
+          </div>
         </Col>
       </Row>
       <Row className='justify-content-center align-items-center'>
-        <Col md='4'>
+        <Col md='3'>
           <Row className='m-4'>
             <Button className='p-3' variant='light' onClick={_ => router.push('spotify/my-playlists')}>Playlists</Button>
           </Row>
